@@ -60,18 +60,22 @@ autoPlayWrapper.classList.add('auto-play__wrapper');
 autoPlay.appendChild(autoPlayWrapper);
 
 // создание текстового поля с лэйблом
+const autoPlayInputWrapper = document.createElement('div');
+autoPlayInputWrapper.classList.add('input-block');
+autoPlayWrapper.appendChild(autoPlayInputWrapper);
+
 const autoPlayLabel = document.createElement('label');
 autoPlayLabel.textContent = 'Enter a sequence of notes';
 autoPlayLabel.setAttribute('for', 'auto-play-input');
 autoPlayLabel.classList.add('auto-play__label');
-autoPlayWrapper.appendChild(autoPlayLabel);
+autoPlayInputWrapper.appendChild(autoPlayLabel);
 
 const autoPlayInput = document.createElement('input');
 autoPlayInput.type = 'text';
 autoPlayInput.maxLength = sounds.length * 2;
 autoPlayInput.setAttribute('id', 'auto-play-input');
 autoPlayInput.classList.add('auto-play__input');
-autoPlayWrapper.appendChild(autoPlayInput);
+autoPlayInputWrapper.appendChild(autoPlayInput);
 
 // создание кнопки проигрывания последовательности нот
 const autoPlayButton = document.createElement('button');
