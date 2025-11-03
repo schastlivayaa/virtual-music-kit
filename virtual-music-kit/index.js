@@ -27,6 +27,7 @@ document.body.appendChild(header);
 
 // создание основной области
 const main = document.createElement('main');
+main.classList.add('main');
 document.body.appendChild(main);
 
 // добавление секции для игры на пианино в мэйн
@@ -42,7 +43,7 @@ play.appendChild(piano);
 // создание клавиш
 sounds.forEach(sound => {
     const key = document.createElement('div');
-    key.classList.add('key');
+    key.classList.add('piano__key');
     key.textContent = sound.label;
     key.dataset.code = sound.code;
     piano.appendChild(key);
@@ -55,24 +56,25 @@ main.appendChild(autoPlay);
 
 // создание обертки
 const autoPlayWrapper = document.createElement('div');
-autoPlayWrapper.classList.add('auto-play-wrapper');
+autoPlayWrapper.classList.add('auto-play__wrapper');
 autoPlay.appendChild(autoPlayWrapper);
 
 // создание текстового поля с лэйблом
 const autoPlayLabel = document.createElement('label');
 autoPlayLabel.textContent = 'Enter a sequence of notes';
 autoPlayLabel.setAttribute('for', 'auto-play-input');
-autoPlayLabel.classList.add('auto-play-label');
+autoPlayLabel.classList.add('auto-play__label');
 autoPlayWrapper.appendChild(autoPlayLabel);
 
 const autoPlayInput = document.createElement('input');
 autoPlayInput.type = 'text';
 autoPlayInput.maxLength = sounds.length * 2;
 autoPlayInput.setAttribute('id', 'auto-play-input');
+autoPlayInput.classList.add('auto-play__input');
 autoPlayWrapper.appendChild(autoPlayInput);
 
 // создание кнопки проигрывания последовательности нот
 const autoPlayButton = document.createElement('button');
 autoPlayButton.textContent = 'Play';
-autoPlayButton.classList.add('auto-play-button');
+autoPlayButton.classList.add('auto-play__button');
 autoPlayWrapper.appendChild(autoPlayButton);
