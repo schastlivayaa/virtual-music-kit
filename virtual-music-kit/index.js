@@ -24,3 +24,26 @@ const header = document.createElement('header');
 header.classList.add('header');
 header.textContent = "Virtual Piano Kit";
 document.body.appendChild(header);
+
+// создание основной области
+const main = document.createElement('main');
+document.body.appendChild(main);
+
+// добавление секции для игры на пианино в мэйн
+const play = document.createElement('section');
+play.setAttribute('id', 'play');
+main.appendChild(play);
+
+// создание пианино
+const piano = document.createElement('div');
+piano.classList.add('piano');
+play.appendChild(piano);
+
+// создание клавиш
+sounds.forEach(sound => {
+    const key = document.createElement('div');
+    key.classList.add('key');
+    key.textContent = sound.label;
+    key.dataset.code = sound.code;
+    piano.appendChild(key);
+})
