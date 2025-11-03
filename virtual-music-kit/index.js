@@ -46,4 +46,33 @@ sounds.forEach(sound => {
     key.textContent = sound.label;
     key.dataset.code = sound.code;
     piano.appendChild(key);
-})
+});
+
+// добавление секции автоматического воспроизведения мелодии в мэйн
+const autoPlay = document.createElement('section');
+autoPlay.setAttribute('id', 'auto-play');
+main.appendChild(autoPlay);
+
+// создание обертки
+const autoPlayWrapper = document.createElement('div');
+autoPlayWrapper.classList.add('auto-play-wrapper');
+autoPlay.appendChild(autoPlayWrapper);
+
+// создание текстового поля с лэйблом
+const autoPlayLabel = document.createElement('label');
+autoPlayLabel.textContent = 'Enter a sequence of notes';
+autoPlayLabel.setAttribute('for', 'auto-play-input');
+autoPlayLabel.classList.add('auto-play-label');
+autoPlayWrapper.appendChild(autoPlayLabel);
+
+const autoPlayInput = document.createElement('input');
+autoPlayInput.type = 'text';
+autoPlayInput.maxLength = sounds.length * 2;
+autoPlayInput.setAttribute('id', 'auto-play-input');
+autoPlayWrapper.appendChild(autoPlayInput);
+
+// создание кнопки проигрывания последовательности нот
+const autoPlayButton = document.createElement('button');
+autoPlayButton.textContent = 'Play';
+autoPlayButton.classList.add('auto-play-button');
+autoPlayWrapper.appendChild(autoPlayButton);
