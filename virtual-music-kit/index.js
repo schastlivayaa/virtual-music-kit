@@ -1,17 +1,17 @@
 // массив нот
 const sounds = [
-    {id: 'do', label: 'Do', file: 'assets/do.mp3', code: 'KeyA'},
-    {id: 're', label: 'Re', file: 'assets/re.mp3', code: 'KeyS'},
-    {id: 'mi', label: 'Mi', file: 'assets/mi.mp3', code: 'KeyD'},
-    {id: 'fa', label: 'Fa', file: 'assets/fa.mp3', code: 'KeyF'},
-    {id: 'salt', label: 'Salt', file: 'assets/salt.mp3', code: 'KeyG'},
-    {id: 'la', label: 'La', file: 'assets/la.mp3', code: 'KeyH'},
-    {id: 'si', label: 'Si', file: 'assets/si.mp3', code: 'KeyJ'},
-    {id: 'do-sharp', label: 'Do#', file: 'assets/do-sharp.mp3', code: 'KeyW'},
-    {id: 're-sharp', label: 'Re#', file: 'assets/re-sharp.mp3', code: 'KeyE'},
-    {id: 'fa-sharp', label: 'Fa#', file: 'assets/fa-sharp.mp3', code: 'KeyT'},
-    {id: 'salt-sharp', label: 'Salt#', file: 'assets/salt-sharp.mp3', code: 'KeyY'},
-    {id: 'la-sharp', label: 'La#', file: 'assets/la-sharp.mp3', code: 'KeyU'},
+    {id: 'do', label: 'A', file: 'assets/do.mp3', code: 'KeyA'},
+    {id: 're', label: 'S', file: 'assets/re.mp3', code: 'KeyS'},
+    {id: 'mi', label: 'D', file: 'assets/mi.mp3', code: 'KeyD'},
+    {id: 'fa', label: 'F', file: 'assets/fa.mp3', code: 'KeyF'},
+    {id: 'salt', label: 'G', file: 'assets/salt.mp3', code: 'KeyG'},
+    {id: 'la', label: 'H', file: 'assets/la.mp3', code: 'KeyH'},
+    {id: 'si', label: 'J', file: 'assets/si.mp3', code: 'KeyJ'},
+    {id: 'do-sharp', label: 'W', file: 'assets/do-sharp.mp3', code: 'KeyW'},
+    {id: 're-sharp', label: 'E', file: 'assets/re-sharp.mp3', code: 'KeyE'},
+    {id: 'fa-sharp', label: 'T', file: 'assets/fa-sharp.mp3', code: 'KeyT'},
+    {id: 'salt-sharp', label: 'Y', file: 'assets/salt-sharp.mp3', code: 'KeyY'},
+    {id: 'la-sharp', label: 'U', file: 'assets/la-sharp.mp3', code: 'KeyU'},
 ];
 
 // создание объекта audio для каждой ноты
@@ -49,7 +49,7 @@ sounds.forEach(sound => {
     const key = document.createElement('div');
     key.classList.add('piano__key');
 
-    if (sound.label.includes('#')) {
+    if (sound.id.includes('-sharp')) {
         key.classList.add('piano__key_black');
     }
 
@@ -74,7 +74,7 @@ autoPlayInputWrapper.classList.add('input-block');
 autoPlayWrapper.appendChild(autoPlayInputWrapper);
 
 const autoPlayLabel = document.createElement('label');
-autoPlayLabel.textContent = 'Enter a sequence of notes';
+autoPlayLabel.textContent = `Enter a sequence of notes (max: ${sounds.length * 2})`;
 autoPlayLabel.setAttribute('for', 'auto-play-input');
 autoPlayLabel.classList.add('auto-play__label');
 autoPlayInputWrapper.appendChild(autoPlayLabel);
