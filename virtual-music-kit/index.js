@@ -22,8 +22,12 @@ sounds.forEach(sound => {
 // добавление хедера на страницу
 const header = document.createElement('header');
 header.classList.add('header');
-header.textContent = "Virtual Piano Kit";
 document.body.appendChild(header);
+
+const headerTitle = document.createElement('h1');
+headerTitle.classList.add('header__title');
+headerTitle.textContent = "Virtual Piano Kit";
+header.appendChild(headerTitle);
 
 // создание основной области
 const main = document.createElement('main');
