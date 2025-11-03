@@ -15,6 +15,12 @@ const sounds = [
 ];
 
 // создание объекта audio для каждой ноты
-sounds.forEach(s => {
-    s.audio = new Audio(s.file)
+sounds.forEach(sound => {
+    sound.audio = new Audio(sound.file)
 });
+
+// добавление хедера на страницу
+const header = document.createElement('header');
+header.classList.add('header');
+header.textContent = "Virtual Piano Kit";
+document.body.appendChild(header);
