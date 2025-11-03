@@ -1,0 +1,32 @@
+.auto-play__wrapper {
+    max-width: 500px;
+    width: 100%;
+    font-size: 2.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: auto;
+    padding: 20px 10px;
+}
+
+.input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+.auto-play__input {
+    max-width: 350px;
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 30px;
+}
+
+@media (max-width: $mobile-width) {
+    .auto-play__wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}

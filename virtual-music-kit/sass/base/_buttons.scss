@@ -1,0 +1,14 @@
+.auto-play__button {
+    background-color: $color-accent;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 30px;
+    color: $color-dark;
+    font-weight: 700;
+    cursor: pointer;
+    @extend %transition;
+    &:hover {
+        background-color: $color-hover;
+        color: $color-light;
+    }
+}

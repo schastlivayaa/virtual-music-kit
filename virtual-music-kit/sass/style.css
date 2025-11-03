@@ -1,0 +1,62 @@
+.auto-play__button {
+  transition: all 0.3s ease;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  background-color: #2E2E2E;
+  color: #F4F4F4;
+}
+
+.auto-play__button {
+  background-color: #17C6FE;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 30px;
+  color: #1F1F1F;
+  font-weight: 700;
+  cursor: pointer;
+}
+.auto-play__button:hover {
+  background-color: #017AA2;
+  color: #F4F4F4;
+}
+
+.auto-play__wrapper {
+  max-width: 500px;
+  width: 100%;
+  font-size: 2.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: auto;
+  padding: 20px 10px;
+}
+
+.input-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.auto-play__input {
+  max-width: 350px;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 30px;
+}
+
+@media (max-width: 480px) {
+  .auto-play__wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
