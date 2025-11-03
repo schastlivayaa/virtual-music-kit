@@ -48,6 +48,11 @@ play.appendChild(piano);
 sounds.forEach(sound => {
     const key = document.createElement('div');
     key.classList.add('piano__key');
+
+    if (sound.label.includes('#')) {
+        key.classList.add('piano__key_black');
+    }
+
     key.textContent = sound.label;
     key.dataset.code = sound.code;
     piano.appendChild(key);
