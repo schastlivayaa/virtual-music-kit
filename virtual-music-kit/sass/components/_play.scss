@@ -1,0 +1,71 @@
+.piano {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    height: 300px;
+    padding: 0 10px;
+}
+
+.piano__key {
+    position: relative;
+    width: calc(100% / 7);
+    height: 100%;
+    border: 1px solid $color-bg;
+    background-color: $color-light;
+    color: $color-dark;
+    font-size: 2.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    cursor: pointer;
+    z-index: 1;
+    padding-bottom: 10px;
+
+    &_black {
+        position: absolute;
+        width: calc(100% / 14);
+        height: 60%;
+        background-color: $color-dark;
+        color: $color-light;
+        font-size: 2rem;
+        z-index: 2;
+        top: 0;
+
+        &:nth-of-type(8) { 
+            left: calc(100% / 7 * 0.7); 
+        }
+        &:nth-of-type(9) { 
+            left: calc(100% / 7 * 1.7); 
+        }
+        &:nth-of-type(10) { 
+            left: calc(100% / 7 * 3.7); 
+        }
+        &:nth-of-type(11) { 
+            left: calc(100% / 7 * 4.7); 
+        }
+        &:nth-of-type(12) { 
+            left: calc(100% / 7 * 5.7); 
+        }
+    }
+}
+
+@media (max-width: $tablet-width) {
+    .piano__key {
+        font-size: 2rem;
+        &_black {
+            font-size: 1.4rem;
+        }
+    }
+}
+
+@media (max-width: $mobile-width) {
+    .piano__key {
+        font-size: 1.6rem;
+        &_black {
+            font-size: 1rem;
+        }
+    }
+}
