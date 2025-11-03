@@ -26,6 +26,26 @@ body {
   color: #F4F4F4;
 }
 
+.header {
+  padding: 20px 10px;
+}
+
+.header__title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 6.4rem;
+}
+
+@media (max-width: 768px) {
+  .header__title {
+    font-size: 4.6rem;
+  }
+}
+@media (max-width: 480px) {
+  .header__title {
+    font-size: 3rem;
+  }
+}
 .auto-play__wrapper {
   max-width: 500px;
   width: 100%;
