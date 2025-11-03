@@ -24,6 +24,12 @@
     z-index: 1;
     padding-bottom: 10px;
 
+    &:hover {
+        border: 2px solid $color-light;
+        border-top: $color-bg;
+        color: $color-accent;
+    }
+
     &_black {
         position: absolute;
         width: calc(100% / 14);
