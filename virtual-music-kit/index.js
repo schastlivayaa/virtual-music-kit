@@ -14,6 +14,8 @@ const sounds = [
     {id: 'la-sharp', label: 'U', file: 'assets/la-sharp.mp3', code: 'KeyU'},
 ];
 
+// === СОЗДАНИЕ ЭЛЕМЕНТОВ ИНТЕРФЕЙСА ===
+
 // создание объекта audio для каждой ноты
 sounds.forEach(sound => {
     sound.audio = new Audio(sound.file)
@@ -91,3 +93,40 @@ const autoPlayButton = document.createElement('button');
 autoPlayButton.textContent = 'Play';
 autoPlayButton.classList.add('auto-play__button');
 autoPlayWrapper.appendChild(autoPlayButton);
+
+// === ВОСПРОИЗВЕДЕНИЕ ЗВУКА ===
+
+// добавление слушателей нажатия мыши
+const keys = document.querySelectorAll('.piano__key');
+keys.forEach(key => {
+    key.addEventListener('mousedown', () => playSound(key.dataset.code));
+    key.addEventListener('mouseup', () => deactivateKey(key.dataset.code));
+});
+
+// добавление слушателей нажатия клавиши клавиатуры
+document.addEventListener('keydown', (event) => {
+    if (event.repeat) return; // блокируем повторение звука при зажатии клавиши
+    playSound(event.code);
+});
+
+document.addEventListener('keyup', (event) => {
+    deactivateKey(event.code);
+});
+
+// функция воспроизведения зука
+function playSound(code) {
+    const currentSound = sounds.find(s => s.code === code);
+    if (!currentSound) return;
+
+    currentSound.audio.currentTime = 0;
+    currentSound.audio.play();
+
+    const currentKey = document.querySelector(`[data-code="${code}"]`);
+    if (currentKey) currentKey.classList.add('piano__key_active');
+}
+
+// функция ресета клавиши пианино
+function deactivateKey(code) {
+    const currentKey = document.querySelector(`[data-code="${code}"]`);
+    if (currentKey) currentKey.classList.remove('piano__key_active');
+}
