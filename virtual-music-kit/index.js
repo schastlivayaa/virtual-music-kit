@@ -96,29 +96,41 @@ autoPlayWrapper.appendChild(autoPlayButton);
 
 // === ВОСПРОИЗВЕДЕНИЕ ЗВУКА ===
 
+let activeKey = null;
+
 // добавление слушателей нажатия мыши
 const keys = document.querySelectorAll('.piano__key');
 keys.forEach(key => {
-    key.addEventListener('mousedown', () => playSound(key.dataset.code));
-    key.addEventListener('mouseup', () => deactivateKey(key.dataset.code));
-});
+    key.addEventListener('mousedown', () => {
+        // блокируем нажатие других клавиш при активной текущей
+        if (activeKey) return;
 
-let activeKey = null;
+        activeKey = key.dataset.code;
+        playSound(activeKey);
+    });
+
+    key.addEventListener('mouseup', () => {
+        if (activeKey === key.dataset.code){
+            deactivateKey(activeKey);
+            activeKey = null;
+        }
+    });
+});
 
 // добавление слушателей нажатия клавиши клавиатуры
 document.addEventListener('keydown', (event) => {
     // блокируем нажатие других клавиш при активной текущей
-    if (activeKey && activeKey !== event.code) return;
+    if (activeKey) return;
     // блокируем повторение звука при зажатии клавиши
     if (event.repeat) return;
     
     activeKey = event.code;
-    playSound(event.code);
+    playSound(activeKey);
 });
 
 document.addEventListener('keyup', (event) => {
     if (activeKey === event.code){
-        deactivateKey(event.code);
+        deactivateKey(activeKey);
         activeKey = null;
     }
 });
