@@ -103,14 +103,24 @@ keys.forEach(key => {
     key.addEventListener('mouseup', () => deactivateKey(key.dataset.code));
 });
 
+let activeKey = null;
+
 // добавление слушателей нажатия клавиши клавиатуры
 document.addEventListener('keydown', (event) => {
-    if (event.repeat) return; // блокируем повторение звука при зажатии клавиши
+    // блокируем нажатие других клавиш при активной текущей
+    if (activeKey && activeKey !== event.code) return;
+    // блокируем повторение звука при зажатии клавиши
+    if (event.repeat) return;
+    
+    activeKey = event.code;
     playSound(event.code);
 });
 
 document.addEventListener('keyup', (event) => {
-    deactivateKey(event.code);
+    if (activeKey === event.code){
+        deactivateKey(event.code);
+        activeKey = null;
+    }
 });
 
 // функция воспроизведения зука
