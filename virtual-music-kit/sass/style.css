@@ -25,6 +25,10 @@ body {
   background-color: #017AA2;
   color: #F4F4F4;
 }
+.auto-play__button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
 
 .header {
   padding: 20px 10px;

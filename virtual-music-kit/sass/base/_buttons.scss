@@ -7,8 +7,14 @@
     font-weight: 700;
     cursor: pointer;
     @extend %transition;
+    
     &:hover {
         background-color: $color-hover;
         color: $color-light;
+    }
+
+    &:disabled {
+        background-color: grey;
+        cursor: not-allowed;
     }
 }

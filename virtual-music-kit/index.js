@@ -102,6 +102,8 @@ let activeKey = null;
 const keys = document.querySelectorAll('.piano__key');
 keys.forEach(key => {
     key.addEventListener('mousedown', () => {
+        // блокируем при автоплее
+        if (isSequencePlaying) return;
         // блокируем нажатие других клавиш при активной текущей
         if (activeKey) return;
 
@@ -119,6 +121,8 @@ keys.forEach(key => {
 
 // добавление слушателей нажатия клавиши клавиатуры
 document.addEventListener('keydown', (event) => {
+    // блокируем при автоплее
+    if (isSequencePlaying) return;
     // блокируем нажатие других клавиш при активной текущей
     if (activeKey) return;
     // блокируем повторение звука при зажатии клавиши
@@ -135,7 +139,7 @@ document.addEventListener('keyup', (event) => {
     }
 });
 
-// функция воспроизведения зука
+// функция воспроизведения звука
 function playSound(code) {
     const currentSound = sounds.find(s => s.code === code);
     if (!currentSound) return;
@@ -151,4 +155,59 @@ function playSound(code) {
 function deactivateKey(code) {
     const currentKey = document.querySelector(`[data-code="${code}"]`);
     if (currentKey) currentKey.classList.remove('piano__key_active');
+}
+
+// === АВТОМАТИЧЕСКОЕ ВОСПРОИЗВЕДЕНИЕ ЗВУКОВ ПОСЛЕДОВАТЕЛЬНОСТИ ===
+
+const validKeys = sounds.map(sound => sound.label.toUpperCase());
+
+// валидация ввода пользователя
+autoPlayInput.addEventListener('input', () => {
+    let value = autoPlayInput.value;
+
+    // оставляем только допустимые символы
+    value = value
+        .toUpperCase()
+        .split('')
+        .filter(char => validKeys.includes(char))
+        .join('');
+    
+    autoPlayInput.value = value;
+});
+
+// добавление слушателя кнопки Play
+autoPlayButton.addEventListener('click', () => {
+    const sequence = autoPlayInput.value.split('');
+    if (sequence.length === 0) return;
+
+    playSequence(sequence);
+});
+
+let isSequencePlaying = false;
+
+// функция воспроизведения последовательности
+function playSequence(sequence) {
+    isSequencePlaying = true;
+
+    // отключение интерактивности
+    autoPlayInput.disabled = true;
+    autoPlayButton.disabled = true;
+
+   sequence.forEach((label, index) => {
+        const sound = sounds.find(sound => sound.label.toUpperCase() === label);
+        if (!sound) return;
+
+        setTimeout(() => {
+            playSound(sound.code);
+
+            setTimeout(() => deactivateKey(sound.code), 250);
+        }, 300 * index);
+    });
+
+    // возвращаем интерактивность по окончании проигрывания
+    setTimeout(() => {
+        autoPlayInput.disabled = false;
+        autoPlayButton.disabled = false;
+        isSequencePlaying = false;
+    }, 300 * sequence.length);
 }
